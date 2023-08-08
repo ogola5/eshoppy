@@ -23,7 +23,7 @@ const ProductImage = styled.img`
 function LandingPage() {
   return (
     <LandingPageContainer>
-      <Title>Welcome A decentralized eCommerce </Title>
+      <Title>Welcome To A Decentralized eCommerce </Title>
       <ProductImage src="/dummy-product-image.jpg" alt="Product" />
       {/* Add more product images */}
     </LandingPageContainer>
