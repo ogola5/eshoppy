@@ -1,25 +1,45 @@
 // components/Navbar.js
+import React, { useState } from 'react';
 import Link from 'next/link';
-import { NavbarContainer, NavItem } from '/styles/NavbarStyles';
+import {
+  NavbarContainer,
+  NavItemContainer,
+  NavItem,
+  MobileNavIcon,
+  MobileNavItems,
+} from '../../styles/NavbarStyles';
+import { FaBars } from 'react-icons/fa';
 
 function Navbar() {
+  const [mobileNavOpen, setMobileNavOpen] = useState(false);
+
+  const toggleMobileNav = () => {
+    setMobileNavOpen(!mobileNavOpen);
+  };
+
   return (
     <NavbarContainer>
       <Link href="/">
-        <NavItem>Home</NavItem>
+        <NavItemContainer>
+          <NavItem>Home</NavItem>
+          <NavItem>About</NavItem>
+          <NavItem>Signup</NavItem>
+          <NavItem>Shop</NavItem>
+          <NavItem>Pay</NavItem>
+        </NavItemContainer>
       </Link>
-      <Link href="/about">
-        <NavItem>About</NavItem>
-      </Link>
-      <Link href="/signup">
-        <NavItem>Signup</NavItem>
-      </Link>
-      <Link href="/shop">
-        <NavItem>Shop</NavItem>
-      </Link>
-      <Link href="/pay">
-        <NavItem>Pay</NavItem>
-      </Link>
+      <MobileNavIcon onClick={toggleMobileNav}>
+        <FaBars />
+      </MobileNavIcon>
+      {mobileNavOpen && (
+        <MobileNavItems>
+          <NavItem>Home</NavItem>
+          <NavItem>About</NavItem>
+          <NavItem>Signup</NavItem>
+          <NavItem>Shop</NavItem>
+          <NavItem>Pay</NavItem>
+        </MobileNavItems>
+      )}
     </NavbarContainer>
   );
 }
