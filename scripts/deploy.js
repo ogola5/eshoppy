@@ -7,7 +7,9 @@ async function main() {
 
   // Deploy ECommerceUser contract
   const ECommerceUser = await ethers.getContractFactory('ECommerceUser');
-  const ecommerceUserContract = await ECommerceUser.deploy();
+  const {utils}= ethers;
+  const gasPrice = utils.parseUnits("100","gwei");
+  const ecommerceUserContract = await ECommerceUser.deploy({gasPrice});
   console.log('ECommerceUser contract deployed to:', ecommerceUserContract.address);
 
   // Deploy ProductListing contract

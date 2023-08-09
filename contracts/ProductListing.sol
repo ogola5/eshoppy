@@ -8,6 +8,7 @@ contract ProductListing {
         string description;
         uint256 price;
         address seller;
+        string ipfsHash; // IPFS hash of product details
     }
 
     uint256 public totalProducts;
@@ -22,9 +23,9 @@ contract ProductListing {
         _;
     }
 
-    function createProduct(string memory _name, string memory _description, uint256 _price) external {
+    function createProduct(string memory _name, string memory _description, uint256 _price, string memory _ipfsHash) external {
         totalProducts++;
-        Product memory newProduct = Product(totalProducts, _name, _description, _price, msg.sender);
+        Product memory newProduct = Product(totalProducts, _name, _description, _price, msg.sender, _ipfsHash);
         products[totalProducts] = newProduct;
 
         emit ProductCreated(totalProducts, _name, _price, msg.sender);
@@ -54,10 +55,12 @@ contract ProductListing {
             string memory name,
             string memory description,
             uint256 price,
-            address seller
+            address seller,
+            string memory ipfsHash
         )
     {
         Product memory product = products[_productId];
-        return (product.name, product.description, product.price, product.seller);
+        return (product.name, product.description, product.price, product.seller, product.ipfsHash);
     }
 }
+
